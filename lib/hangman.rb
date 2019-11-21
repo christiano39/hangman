@@ -1,4 +1,5 @@
 require 'yaml'
+
 class Game
     attr_accessor :secret_word, :guessed_letters, :number_of_guesses_remaining, :guessed_word
     @@save_number = 1
@@ -159,7 +160,9 @@ class Game
     end
     
     def get_new_random_number
-        rand(61406)
+        filename = "dictionary.txt"
+        line_count = `wc -l "#{filename}"`.strip.split(' ')[0].to_i
+        rand(line_count)
     end
 
     def secret_word_to_underscores(secret_word)
